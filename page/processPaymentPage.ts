@@ -6,7 +6,7 @@ export class ProcessPayment {
     }
     async ProcessPayment(){
             // Accéder au panier
-            await this.page.getByRole('link', { name: 'My Cart' }).click();
+            await this.page.getByRole('link', { name: 'Cart' }).click();
 
             // Passer à la caisse
             await this.page.getByRole('button', { name: 'Proceed to Checkout' }).click();

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { Login } from '../page/Login';
-import { loginData } from '../data/loginData';
+import { Login } from '../../page/loginPage';
+import { loginData } from '../../data/loginData';
 
 test.describe('Login Test', () => {
     test('Login with valid credentials', async ({ page }) => {
