@@ -9,7 +9,7 @@ export class CreateNewAccount {
     async goto() {
         await this.page.goto('https://magento.softwaretestingboard.com/');
         
-        // 检查 "DISAGREE" 按钮是否存在
+        // verify the button "DISAGREE" 
         const agreeButton = this.page.locator('#accept-btn');
         if (await agreeButton.isVisible()) {
             await agreeButton.click();

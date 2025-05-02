@@ -5,8 +5,8 @@ import { loginData } from '../../data/loginData';
 test.describe('Login Test', () => {
     test('Login with valid credentials', async ({ page }) => {
         const login = new Login(page);
-        await login.goto(); // 打开页面并处理弹窗
-        await login.Login(loginData); // 登录
-        await login.verifyLogin(); // 验证登录成功
+        await login.goto(); // open the page and handle the popup
+        await login.Login(loginData); // login with valid credentials
+        await login.verifyLogin(); // verify successful login
     });
 });
