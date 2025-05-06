@@ -5,20 +5,25 @@ export class DeleteProduct {
     }
 
     async DeleteProduct(productName: string) {
-        // Localiser le produit par son nom
-        const productItem = this.page.getByRole('listitem').filter({ hasText: productName });
+        
+        const cart = this.page.getByRole('link', { name: 'My Cart' });
+        await cart.scrollIntoViewIfNeeded();
+        await cart.click(); // Faire défiler pour rendre l'élément visible
+      
+        // wait for the cart panel to be visible
+        const cartPanel = this.page.locator('.minicart-wrapper.active');
+        await cartPanel.waitFor({ state: 'visible'});
 
-        // Faire défiler jusqu'au produit pour le rendre visible
-        await productItem.scrollIntoViewIfNeeded();
+        // verify the product is in the cart
+        const productItem = cartPanel.locator('.product-item-details').filter({ hasText: productName});
 
-        // Localiser le bouton "Remove" associé au produit
-        const removeButton = productItem.getByRole('link', { name: /Remove/i });
+        // find the remove button
+        const removeButton = productItem.locator('.action.delete');
 
-        // S'assurer que le bouton "Remove" est visible
-        await removeButton.waitFor({ state: 'visible' });
-
-        // Cliquer sur le bouton "Remove"
+        // click the remove button
         await removeButton.click();
+
+
 
         // Confirmer la suppression si nécessaire
         await expect(this.page.getByText('Are you sure you would like')).toBeVisible();

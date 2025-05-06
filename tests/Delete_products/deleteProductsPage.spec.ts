@@ -24,8 +24,8 @@ test.describe('Delete products from Cart', () => {
 
     test('Delete products from the cart', async ({ page }) => {
 
-
+         
           const deleteProduct = new DeleteProduct(page);
-          await deleteProduct.DeleteProduct(); // Delete product from the cart
+          await deleteProduct.DeleteProduct("Inez Full Zip Jacket"); // Delete product from the cart
     });
 });
